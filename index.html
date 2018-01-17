@@ -11,6 +11,7 @@
 <body>
 <div class="container">
   <h1>Geo Check</h1>
+  <h3>Attivare la posizione GPS sul dispositivo prima di cliccare sotto</h3>
   <p><button onclick="getLocation()">Invia Coordinate</button></p> 
   <p id="demo"></p>          
 </div>
@@ -52,29 +53,37 @@ function showPosition(position) {
 	}
 	http.send(params);
 	*/
-	var f = document.createElement('form');
-	f.action='http://www.donkeylab.com/geosend.php';
-	f.method='POST';
-	f.target='_blank';
-	//f.enctype="multipart/form-data"
+	
+	var _lat = position.coords.latitude;
+	var _long = position.coords.longitude;
+	
+	if(_lat != "")
+	{
+		var f = document.createElement('form');
+		f.action='http://www.donkeylab.com/geosend.php';
+		f.method='POST';
+		f.target='_blank';
+		//f.enctype="multipart/form-data"
 
-	var k=document.createElement('input');
-	k.type='hidden';k.name='lat';
-	k.value=position.coords.latitude;
-	f.appendChild(k);
+		var k=document.createElement('input');
+		k.type='hidden';k.name='lat';
+		k.value=_lat
+		f.appendChild(k);
 
-	var j=document.createElement('input');
-	j.type='hidden';j.name='long';
-	j.value=position.coords.longitude;
-	f.appendChild(j);
+		var j=document.createElement('input');
+		j.type='hidden';j.name='long';
+		j.value=_long
+		f.appendChild(j);
 
-	//var z=document.getElementById("FileNameId")
-	//z.setAttribute("name", "IDProof");
-	//z.setAttribute("id", "IDProof");
-	//f.appendChild(z);
+		//var z=document.getElementById("FileNameId")
+		//z.setAttribute("name", "IDProof");
+		//z.setAttribute("id", "IDProof");
+		//f.appendChild(z);
 
-	document.body.appendChild(f);
-	f.submit()
+		document.body.appendChild(f);
+		f.submit()
+	}
+
 	
 	
 }
