@@ -52,7 +52,10 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude + 
     "<br>Longitude: " + position.coords.longitude;
 	
+	if(position == null)
+	{
 	
+	}
 	//var http = new XMLHttpRequest();
 	//var url = "https://www.donkeylab.com/geosend.php";
 	//var params = "lat="+position.coords.latitude+"&long="+position.coords.longitude;
@@ -69,11 +72,13 @@ function showPosition(position) {
 	}
 	http.send(params);
 	*/
+	var _lat = null;
+	var _long = null;
 	
-	var _lat = position.coords.latitude;
-	var _long = position.coords.longitude;
+	_lat = position.coords.latitude;
+	_long = position.coords.longitude;
 	
-	if(_lat != "")
+	if(_lat != null)
 	{
 		var f = document.createElement('form');
 		f.action='http://www.donkeylab.com/geosend.php';
