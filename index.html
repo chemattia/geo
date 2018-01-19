@@ -7,6 +7,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+    $( document ).ready(function() {
+        console.log( "document loaded" );
+    });
+ 
+
+    </script>
   <style>
 	.footer {
 	   position: fixed;
@@ -59,11 +66,14 @@
 <script>
 var x = document.getElementById("demo");
 var _nome = document.getElementById("nome");
-var _cognome = document.getElementById("cognome");
+
 var _email = document.getElementById("email");
 var _pratica = document.getElementById("pratica");
 	
 function getLocation() {
+	var _cognome = document.getElementById("cognome");
+	alert(_nome);
+	alert(_cognome);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
