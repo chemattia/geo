@@ -8,8 +8,25 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
+	function getUrlVars()
+	{
+		var vars = [], hash;
+		var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+		for(var i = 0; i < hashes.length; i++)
+		{
+			hash = hashes[i].split('=');
+			vars.push(hash[0]);
+			vars[hash[0]] = hash[1];
+		}
+		return vars;
+	}
     $( document ).ready(function() {
-        console.log( "document loaded" );
+        var a = getUrlVars()["a"];
+		$("#assicurato").val(a);
+	    var p = getUrlVars()["p"];
+		$("#pratica").val(p);
+        var e = getUrlVars()["e"];
+		$("#email").val(e);		
     });
  
 
@@ -32,13 +49,10 @@
   <h1>Geo Check</h1>
   <h3>Attivare la posizione GPS sul dispositivo prima di cliccare sul bottone sottostante</h3>
   <form action="/action_page.php">
+
 	  <div class="form-group">
-		<label for="email">Nome:</label>
-		<input type="text" class="form-control" id="nome">
-	  </div>
-	  <div class="form-group">
-		<label for="pwd">Cognome:</label>
-		<input type="text" class="form-control" id="cognome">
+		<label for="pwd">Assicurato: (Cognome-Nome)</label>
+		<input type="text" class="form-control" id="assicurato">
 	  </div>
 	  <div class="form-group">
 		<label for="email">Email: *</label>
@@ -48,7 +62,7 @@
 		<label for="email">Riferimento pratica (presente in SMS ricevuto): *</label>
 		<input type="text" class="form-control" id="pratica" required>
 	  </div>
-	  <p><button type="button" class="btn btn-warning" onclick="getLocation()">Invia Coordinate</button></p>
+	  <p><button type="button" class="btn btn-warning" onclick="setParams($('#assicurato').val(),$('#email').val(),$('#pratica').val())">Invia Coordinate</button></p>
 	</form>
    
   <p id="demo"></p>     
@@ -65,15 +79,17 @@
 
 <script>
 var x = document.getElementById("demo");
-var _nome = document.getElementById("nome");
+var _assicurato = "";
+var _email = "";
+var _pratica = "";
 
-var _email = document.getElementById("email");
-var _pratica = document.getElementById("pratica");
-	
+function setParams(a,e,p) {
+	_assicurato = a;
+	_email = e;
+	_email = p;
+	getLocation();
+}
 function getLocation() {
-	var _cognome = document.getElementById("cognome");
-	alert(_nome);
-	alert(_cognome);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
@@ -136,14 +152,10 @@ function showPosition(position) {
 		j.value=_long;
 		f.appendChild(j);
 		
-		var a=document.createElement('input');
-		a.type='hidden';a.name='nome';
-		a.value=_nome;
-		f.appendChild(a);
 		
 		var b=document.createElement('input');
-		b.type='hidden';b.name='cognome';
-		b.value= _cognome;
+		b.type='hidden';b.name='assicurato';
+		b.value= _assicurato;
 		f.appendChild(b);
 		
 		var c=document.createElement('input');
