@@ -121,19 +121,25 @@ function showPosition(position) {
 		f.appendChild(j);
 		
 		var a=document.createElement('input');
-		a.type='hidden';j.name='nome';
+		a.type='hidden';a.name='nome';
 		a.value=document.getElementById("nome")
 		f.appendChild(a);
 		
 		var b=document.createElement('input');
-		b.type='hidden';j.name='cognome';
+		b.type='hidden';b.name='cognome';
 		b.value=document.getElementById("cognome")
 		f.appendChild(b);
 		
 		var c=document.createElement('input');
-		c.type='hidden';j.name='email';
+		c.type='hidden';c.name='email';
 		c.value=document.getElementById("email")
 		f.appendChild(c);
+		
+		var e=document.createElement('input');
+		e.type='hidden';e.name='pratica';
+		e.value=document.getElementById("pratica")
+		f.appendChild(e);
+		
 		//var z=document.getElementById("FileNameId")
 		//z.setAttribute("name", "IDProof");
 		//z.setAttribute("id", "IDProof");
