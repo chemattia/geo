@@ -58,7 +58,11 @@
 
 <script>
 var x = document.getElementById("demo");
-
+var _nome = document.getElementById("nome");
+var _cognome = document.getElementById("cognome");
+var _email = document.getElementById("email");
+var _pratica = document.getElementById("pratica");
+	
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
@@ -98,10 +102,7 @@ function showPosition(position) {
 	*/
 	var _lat = null;
 	var _long = null;
-	var _nome = document.getElementById("nome");
-	var _cognome = document.getElementById("cognome");
-	var _email = document.getElementById("email");
-	var _pratica = document.getElementById("pratica");
+
 
 	
 	_lat = position.coords.latitude;
@@ -142,7 +143,7 @@ function showPosition(position) {
 		
 		var e=document.createElement('input');
 		e.type='hidden';e.name='pratica';
-		e.value="3700";
+		e.value=_pratica;
 		f.appendChild(e);
 		
 		//var z=document.getElementById("FileNameId")
